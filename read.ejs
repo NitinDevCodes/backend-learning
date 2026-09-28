@@ -23,7 +23,7 @@
                     <h3 class="text-xl font-bold mt-3"><%= user.name %></h3>
                     <h5 class="text-zinc-500"><%= user.email %></h5>
                     <div class="flex gap-3 mt-4">
-                        <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded transition-colors">Edit</button>
+                        <a href="/edit/<%= user._id %>" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded transition-colors">Edit</a>
                         <a href="/delete/<%= user._id %>" class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded transition-colors">Delete</a>
                     </div>
                 </div>

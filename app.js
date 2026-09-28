@@ -15,9 +15,20 @@ app.get('/read', async (req, res) => {
     let users = await userModel.find()
     res.render("read", { users: users })
 })
+app.get('/edit/:id', async (req, res) => {
+    let { id } = req.params
+    let user = await userModel.findById(id)
+    res.render("edit", { user: user })
+})
+app.post('/update/:id', async (req, res) => {
+    let {image, name, email} = req.body
+    let { id } = req.params
+    await userModel.findByIdAndUpdate({_id: id}, { image, name, email }, { new: true })
+    res.redirect('/read')
+})
 app.get('/delete/:id', async (req, res) => {
     let { id } = req.params
-    await userModel.findByIdAndDelete(id)
+    await userModel.findByIdAndDelete({_id: id})
     res.redirect('/read')
 })
 app.post('/create', async (req, res) => {
