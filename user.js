@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb://127.0.0.1:27017/testapp")
+mongoose.connect(`mongodb://127.0.0.1:27017/authtestapp`)
 
 const userSchema = mongoose.Schema({
-    image: String,
+    username: String,
     email: String,
-    name: String
+    password: String,
+    age: Number
 })
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model("user", userSchema)
