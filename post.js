@@ -4,7 +4,7 @@ const { PassThrough } = require('node:stream')
 mongoose.connect("mongodb://127.0.0.1:27017/miniproject")
 
 const postSchema = mongoose.Schema({
-    users: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
