@@ -1,16 +1,24 @@
 const mongoose = require('mongoose')
-const { type } = require('node:os')
+const { PassThrough } = require('node:stream')
+
+mongoose.connect("mongodb://127.0.0.1:27017/miniproject")
 
 const postSchema = mongoose.Schema({
-    postdata: String,
-    user: {
+    users: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
-    date: {
+    date:{
         type: Date,
-        default: Date.now
-    }
+        default: Date.now()
+    },
+    content: String,
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "user"
+        }
+    ]
 })
 
 module.exports = mongoose.model('post', postSchema)
