@@ -1,4 +1,7 @@
 const fs = require("fs")
+const os = require("os")
+
+console.log(os.cpus().length)
 
 //Sync
 // fs.writeFileSync("./test.txt", "Hey there!")
@@ -9,17 +12,17 @@ const fs = require("fs")
 // const result = fs.readFileSync("./test.txt", "utf-8")
 // console.log(result)
 
-fs.readFile("./test.txt", "utf-8", (err, result) => {
-    if(err){
-        console.log("Error: ", err)
-    }
-    else{
-        console.log(result)
-    }
-})
+// fs.readFile("./test.txt", "utf-8", (err, result) => {
+//     if(err){
+//         console.log("Error: ", err)
+//     }
+//     else{
+//         console.log(result)
+//     }
+// })
 
-fs.appendFileSync("./test.txt", `\nYes i am here\n`)
+// fs.appendFileSync("./test.txt", `\nYes i am here\n`)
 
-// fs.cpSync("./test.txt", "./copy.txt")
+// // fs.cpSync("./test.txt", "./copy.txt")
 
-fs.unlinkSync("./copy.txt")
+// fs.unlinkSync("./copy.txt")
