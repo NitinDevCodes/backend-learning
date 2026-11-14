@@ -1,11 +1,3 @@
-1794506724389: New req received
-1794506724424: New req received
-1794507007424: / New req received
-1794507056472: / New req received
-1794507056504: /favicon.ico New req received
-1794507063732: / New req received
-1794507063759: /favicon.ico New req received
-1794507091325: /about New req received
-1794507091352: /favicon.ico New req received
-1794507102658: / New req received
-1794507102684: /favicon.ico New req received
+1794569100446: GET /about?myname=nitin&userid=1 New req received
+1794569510239: GET /signup New req received
+1794569521665: GET /signup New req received
