@@ -29,13 +29,13 @@ app.route("/api/users/:id").get((req, res) => {
 })
 
 app.post('/api/users', (req, res) =>{
-    return res.json{{status: "pending"}}
+    return res.json({status: "pending"})
 })
 app.patch('/api/users/:id', (req, res) =>{
-    return res.json{{status: "pending"}}
+    return res.json({status: "pending"})
 })
 app.post('/api/users', (req, res) =>{
-    return res.json{{STATUS}}
+    return res.json({STATUS})
 })
 
 
