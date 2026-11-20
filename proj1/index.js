@@ -35,7 +35,8 @@ app.get("/users", (req, res) => {
 })
 //REST API
 app.get("/api/users", (req, res) => {
-    console.log("I am in get root", req.myName)
+    res.setHeader('X-myName', "Nitin Jha")// Custom Header, so always add X to sutom header
+    console.log(req.headers)
     return res.json(users)
 })
 

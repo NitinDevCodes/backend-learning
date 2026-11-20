@@ -4,3 +4,8 @@
 1795154168538:::1 POST: /api/users
 1795154219218:::1 POST: /api/users
 1795154460944:::1 POST: /api/users
+1795156298402:::1 GET: /api/users
+1795156505908:::1 GET: /api/users
+1795156548839:::1 GET: /api/users
+1795156672806:::1 GET: /api/users
+1795156772416:::1 GET: /api/users
