@@ -7,6 +7,24 @@ const PORT = 8000
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
+app.use((req, res, next) => {
+    fs.appendFile('log.txt', `${Date.now()}:${req.ip} ${req.method}: ${req.path}\n`,
+    (err,data) => {
+        next();
+    })
+})
+// app.use((req, res, next) => {
+//     console.log("MiddleWare 1")
+//     // return res.json({msg: "Middleware 1"})
+//     req.myName = "NitinJha";
+//     next();
+// })
+// app.use((req, res, next) => {
+//     console.log("MiddleWare 2", req.myName)
+//     // return res.end("Hi there")
+//     next();
+// })
+
 app.get("/users", (req, res) => {
     const html = `
     <ul>
@@ -17,6 +35,7 @@ app.get("/users", (req, res) => {
 })
 //REST API
 app.get("/api/users", (req, res) => {
+    console.log("I am in get root", req.myName)
     return res.json(users)
 })
 
