@@ -1,39 +1,47 @@
 const express = require("express");
-const {connectMongoDB} = require("./connection");
+const { connectMongoDB } = require("./connection");
 const path = require("path");
 const URL = require("./models/url");
 const urlRoute = require("./routes/url");
 const staticRoute = require("./routes/staticRouter");
-const { timeStamp } = require("node:console");
 
 const app = express();
 const PORT = 8001;
 
 connectMongoDB("mongodb://localhost:27017/short-url")
-.then(() => console.log("MongoDB connected"));
+    .then(() => console.log("MongoDB connected"));
 
 app.set("view engine", "ejs");
-app.set("views", path.resolve("./views"));
+app.set("views", path.resolve(__dirname, "views"));
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}))
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/url", urlRoute);
 app.use("/", staticRoute);
 
-app.get("/url/:shortId", async(req, res) => {
-    const shortId = req.params.shortId; // Suppose someone visits:http://localhost:8001/xY7kP2 ,Express extracts xY7kP2 and makes it available through req.params.shortId.
-    const entry = await URL.findOneAndUpdate( //findOneAndUpdate() finds a document matching the condition and updates it.
-        {shortId},
+// URL redirection
+app.get("/url/:shortId", async (req, res) => {
+    const shortId = req.params.shortId;
+
+    const entry = await URL.findOneAndUpdate(
+        { shortId },
         {
-            $push: { //$push adds a new element to an existing array.
+            $push: {
                 visitHistory: {
                     timestamp: Date.now(),
                 },
-            }
+            },
         }
-    )
-    res.redirect(entry.redirectURL); //The browser is redirected to the original URL stored in MongoDB.
-})
+    );
 
-app.listen(PORT, () => console.log(`server started at PORT: ${PORT}`));
+    if (!entry) {
+        return res.status(404).send("URL not found");
+    }
+
+    return res.redirect(entry.redirectURL);
+});
+
+app.listen(PORT, () => {
+    console.log(`server started at PORT: ${PORT}`);
+});
