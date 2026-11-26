@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { type } = require("node:os");
 
 const urlSchema = new mongoose.Schema(
     {
@@ -19,7 +20,11 @@ const urlSchema = new mongoose.Schema(
                     type: Number
                 }
             }
-        ]
+        ],
+        crestedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "users",
+        }
     },
     {
         timestamps: true
