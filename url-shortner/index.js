@@ -2,8 +2,10 @@ const express = require("express");
 const { connectMongoDB } = require("./connection");
 const path = require("path");
 const URL = require("./models/url");
+
 const urlRoute = require("./routes/url");
 const staticRoute = require("./routes/staticRouter");
+const userRoute = require("./routes/user");
 
 const app = express();
 const PORT = 8001;
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/url", urlRoute);
+app.use("/user", userRoute);
 app.use("/", staticRoute);
 
 // URL redirection
