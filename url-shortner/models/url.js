@@ -21,7 +21,7 @@ const urlSchema = new mongoose.Schema(
                 }
             }
         ],
-        crestedBy: {
+        createdBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "users",
         }

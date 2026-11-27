@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
 
     return res.render("home", {
         urls: allUrls,
+        id: req.query.id,
     });
 });
 
